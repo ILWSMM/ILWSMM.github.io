@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="manifest" href="images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #0d0d0d, #000000);
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-shadow: 0px 0px 10px #8a2be2;
+            z-index: 1;
+        }
+
+        h2 {
+            margin-top: -10px;
+            text-shadow: 0px 0px 10px #8a2be2;
+            z-index: 1;
+            
+        }
+
+        audio {
+            width: 100%;
+            max-width: 600px;
+            outline: none;
+            background: #333;
+            border: 1px solid #8a2be2;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border: 2px solid #8a2be2;
+            border-radius: 5px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 120px;
+            z-index: 1;
+        }
+
+        button:hover {
+            background: #8a2be2;
+            color: #000;
+            box-shadow: 0px 0px 20px #8a2be2;
+            z-index: 1;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .return-home {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    font-size: 1rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.return-home a {
+    padding: 15px 30px;
+            font-size: 0.9rem;
+            border: 2px solid #8a2be2;
+            border-radius: 5px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 120px;
+            z-index: 1;
+}
+
+.return-home a:hover {
+    background: #8a2be2;
+            color: #000;
+            box-shadow: 0px 0px 20px #8a2be2;
+            z-index: 1;
+}
+
+
+        .embed-container {
+    position: fixed;
+    bottom: 10px;
+    left: 20px; 
+    width: 400px; /* Adjust width */
+    height: auto; /* Adjust height if needed */
+    z-index: 0; /* Keep it above the background but below the main content */
+    border: 2px solid #8a2be2; /* Adds a border for styling */
+    box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.5); /* Optional shadow for effect */
+}
+
+.background-animation {
+    position: fixed; /* Ensure it covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Push it behind everything */
+    overflow: hidden;
+}
+
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.2);
+            animation: move 20s linear infinite;
+        }
+        p {
+            margin-bottom: -70px;
+            font-size: 0.80rem;
+            color: #e0e0e0;
+            text-shadow: 0px 0px 5px #8a2be2;
+            position: absolute;
+            z-index: 1;
+bottom: 260px;
+right: 20px;
+
+            
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-200px) translateX(200px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .embed-text {
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #e0e0e0;
+    text-align: left;
+    text-shadow: 0px 0px 8px #8a2be2;
+    font-weight: bold;
+    bottom: 360px;
+    left: 0px;
+}
+
+.embed-container1 {
+    position: fixed; /* Makes it fixed in the viewport */
+    top: 10px;   /* Adjust as needed */
+    left: 20px;      /* Moves it to the left side */
+    width: 400px;    /* Adjust width */
+    border: 2px solid #8a2be2;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.5);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.embed-text1 {
+    position: fixed;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    color: #e0e0e0;
+    text-align: left;
+    text-shadow: 0px 0px 8px #8a2be2;
+    font-weight: bold;
+    top: 170px;
+    left: 22px;
+    z-index: 1;
+}
+
+.buttonsoc {
+    position: fixed;
+    top: 40px;
+    right: 200px;
+    font-size: 1rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.buttonsoc a {
+    padding: 15px 30px;
+            font-size: 0.9rem;
+            border: 2px solid #8a2be2;
+            border-radius: 5px;
+            background: transparent;
+            color: #fff;
+            cursor: grab;
+            transition: all 0.3s ease-in-out;
+            width: 120px;
+            z-index: 1;
+}
+
+.buttonsoc a:hover {
+    background: #8a2be2;
+            color: #000;
+            box-shadow: 0px 0px 20px #8a2be2;
+            z-index: 1;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>My music</h1>
+    <h2>(Also a music Player)</h2>
+    <p>Select a track to play:</p>
+
+   
+    <div class="return-home">
+        <a href="/">Return to Home</a>
+    </div>
+    
+
+    <div class="button-container">
+        <button onclick="playMusic(0)">Psilocybin Mushrooms</button>
+        <button onclick="playMusic(1)">Corrupt Robot</button>
+        <button onclick="playMusic(2)">Trip To Space</button>
+        <button onclick="playMusic(3)">Mind Twister</button>
+    </div>
+
+    <div class="color-block">
+        
+    </div>
+
+    <div class="buttonsoc">
+
+            <a href="https://youtube.com/@ILWSM_official" target="_blank">YouTube Channel</a>
+            
+    </div>
+
+    <audio id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/flac">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="embed-container1">
+        <iframe style="border-radius:12px" 
+                src="https://open.spotify.com/embed/artist/4RVBB0ZX82ivvvtEAAhQi8?utm_source=generator" 
+                width="100%" 
+                height="152" 
+                frameborder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+        </iframe>
+    </div>
+    
+    
+    
+    
+    
+    <div class="embed-container">
+        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2007777655&color=%2374305c&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+        <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+            <a href="https://soundcloud.com/ilwsm" title="ILWSM" target="_blank" style="color: #cccccc; text-decoration: none;">ILWSM</a> · <a href="https://soundcloud.com/ilwsm/mind-twister" title="Mind Twister" target="_blank" style="color: #cccccc; text-decoration: none;">Mind Twister</a>
+        </div>
+
+        <div class="embed-text">Play the Latest Song</div>
+        
+
+
+    <div class="background-animation">
+        <div class="circle" style="width: 200px; height: 200px; top: 10%; left: 20%;"></div>
+        <div class="circle" style="width: 300px; height: 300px; top: 40%; left: 70%;"></div>
+        <div class="circle" style="width: 150px; height: 150px; top: 80%; left: 50%;"></div>
+    </div>
+    <div class="embed-text1">My Spotify</div>
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+        const audioSource = document.getElementById('audio-source');
+
+        // Simulate fetching music files from the server
+        const musicFiles = [
+            'mp3/Mushrooms.flac', // Replace these with actual file names
+            'mp3/CorruptRobot.flac',
+            'mp3/TripToSpace.flac',
+            'mp3/MindTwister.flac'
+        ];
+
+        // Function to play selected music
+        function playMusic(index) {
+            audioSource.src = musicFiles[index];
+            audioPlayer.load();
+            audioPlayer.play();
+        }
+    </script>
+</body>
+</html>
