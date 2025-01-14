@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="keywords" content="ILWSM">
+    <meta name="description" content="ILWSM Web">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILWSM Official Website</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #0d0d0d, #000000);
+            color: #e0e0e0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 5px;
+            text-shadow: 0px 0px 20px #8a2be2, 0px 0px 50px #8a2be2;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            max-width: 600px;
+            text-shadow: 0px 0px 10px #8a2be2;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            border: 2px solid #8a2be2;
+            padding: 10px 20px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        a:hover {
+            background: #8a2be2;
+            color: #000;
+            box-shadow: 0px 0px 20px #8a2be2;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.2);
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-200px) translateX(200px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ILWSM</h1>
+        <p>Immerse yourself in a realm of psychedelic soundscapes. Music to elevate, inspire, and transcend the ordinary.</p>
+        <div class="button-container">
+            <a href="/music">Explore Music</a>
+            <a href="/about">About ILWSM</a>
+            <a href="/quickinfo">Visual Gallery</a>
+            <a href="/contact">Contact ILWSM</a>
+        </div>
+    </header>
+
+    <div class="background-animation">
+        <div class="circle" style="width: 200px; height: 200px; top: 10%; left: 20%;"></div>
+        <div class="circle" style="width: 300px; height: 300px; top: 40%; left: 70%;"></div>
+        <div class="circle" style="width: 150px; height: 150px; top: 80%; left: 50%;"></div>
+    </div>
+</body>
+</html>
